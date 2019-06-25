@@ -6,10 +6,15 @@ First approach to write application with documentation.
 
 Dependencies:
 -Django==
+
 -Black==
+
 -Sphinx==
+
 -
 
 Libraries:
+
 -Bootstrap4
+
 -
