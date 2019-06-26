@@ -29,7 +29,7 @@ class Group(models.Model):
         return reverse('groups:single', kwargs={'slug': self.slug})
 
     class Meta:
-        ordering = ['name']
+        ordering = ['name ']
 
 class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name="memberships")
