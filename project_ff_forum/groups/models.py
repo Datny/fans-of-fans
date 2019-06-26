@@ -10,11 +10,12 @@ import misaka
 User = get_user_model()
 register = template.Library()
 
+
 class Group(models.Model):
-    name =  models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)
-    description =  models.TextField(blank=True, default="")
-    description_html = models.TextField(editable=False, default="",blank=True)
+    description = models.TextField(blank=True, default="")
+    description_html = models.TextField(editable=False, default="", blank=True)
     members = models.ManyToManyField(User, through="GroupMember")
 
     def __str__(self):
@@ -26,10 +27,11 @@ class Group(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('groups:single', kwargs={'slug': self.slug})
+        return reverse("groups:single", kwargs={"slug": self.slug})
 
     class Meta:
-        ordering = ['name ']
+        ordering = ["name "]
+
 
 class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name="memberships")
@@ -39,4 +41,4 @@ class GroupMember(models.Model):
         return self.User.username
 
     class Meta:
-        unique_togheter = ('group', 'user')
+        unique_togheter = ("group", "user")

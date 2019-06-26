@@ -6,7 +6,22 @@
 <h2>Member count:{{group.members.count}}</h2>
 <div class="content">
     {%if user in group.members.all %}
-    <a href="{%url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-warning">ICO:LEAVE GROUP</a>
+    <a href="{%url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-warning">ICO+:LEAVE GROUP</a>
+    {%else%}
+    <a href="{%url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-warning">ICO+:JOIN GROUP</a>
     {%endif%}
 </div>
+{%endblock%}
+
+{%block group_content%}
+<div class="col-md-8">
+    {%if group.post.count ==0 %}
+    <h2>No posts in Group</h2>
+    {%else%}
+    {% for post in post.group.all %}
+    {%include "posts/_post.html"%}
+    {% endfor %}
+
+</div>
+
 {%endblock%}
