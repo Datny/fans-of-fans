@@ -30,15 +30,15 @@ class Group(models.Model):
         return reverse("groups:single", kwargs={"slug": self.slug})
 
     class Meta:
-        ordering = ["name "]
+        ordering = ["name"]
 
 
 class GroupMember(models.Model):
-    group = models.ForeignKey(Group, related_name="memberships")
-    user = models.ForeignKey(User, related_name="user_groups")
+    group = models.ForeignKey(Group, related_name="memberships", on_delete=models.CASCADE,)
+    user = models.ForeignKey(User, related_name="user_groups", on_delete=models.CASCADE,)
 
     def __str__(self):
         return self.User.username
 
     class Meta:
-        unique_togheter = ("group", "user")
+        unique_together = ("group", "user")
